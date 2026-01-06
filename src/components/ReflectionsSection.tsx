@@ -12,26 +12,26 @@ const reflections: Reflection[] = [
   {
     id: 1,
     quote: "The moment we stopped competing and started collaborating, magic happened. We became unstoppable.",
-    author: "Alex C.",
-    role: "Team Leader",
+    author: "Acty Theres Pauly",
+    role: "Captian",
   },
   {
     id: 2,
     quote: "Creativity isn't about having the best ideas — it's about making each other's ideas better.",
-    author: "Maya L.",
-    role: "Creative Director",
+    author: "Karthik S.",
+    role: "Vise Captain",
   },
   {
     id: 3,
     quote: "Every challenge we faced became a stepping stone. We learned to embrace the unknown.",
-    author: "David P.",
-    role: "Tech Lead",
+    author: "Aadhithyan G.",
+    role: "Research and Verification",
   },
   {
     id: 4,
     quote: "True leadership is about lifting others up. Our strength is in our unity.",
-    author: "Sophie W.",
-    role: "Strategist",
+    author: "Nirmal M.",
+    role: "Technical Lead",
   },
 ];
 

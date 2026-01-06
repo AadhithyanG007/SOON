@@ -20,7 +20,7 @@ interface DayTask {
 
 const stats: StatItem[] = [
   { id: 1, label: "Total Points", value: 7181, suffix: "", icon: <Trophy className="w-6 h-6" />, color: "text-golden" },
-  { id: 2, label: "Tasks Completed", value: 2, suffix: "", icon: <CheckCircle className="w-6 h-6" />, color: "text-accent" },
+  { id: 2, label: "Tasks Completed", value: 3, suffix: "", icon: <CheckCircle className="w-6 h-6" />, color: "text-accent" },
 ];
 
 const dayTasks: DayTask[] = [

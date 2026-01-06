@@ -18,23 +18,23 @@ interface GalleryItem {
 const galleryItems: GalleryItem[] = [
   {
     id: 1,
-    title: "Team Hoodie Collection",
+    title: "Team ID Cards",
     category: "Merchandise",
     description: "Custom-designed hoodies featuring our signature lightning bolt emblem. Each piece represents our team's electric energy and unity.",
     image: gallery1,
   },
   {
     id: 2,
-    title: "Premium Gift Boxes",
+    title: "Gifts & Packages",
     category: "Gifts",
     description: "Handcrafted gift packages for team members and partners, wrapped in our cosmic theme with golden accents.",
     image: gallery2,
   },
   {
     id: 3,
-    title: "Collaboration Workshop",
+    title: "Group Discussions",
     category: "Activities",
-    description: "Team building sessions where ideas spark and connections deepen. Together, we create something extraordinary.",
+    description: "Snapshots from our brainstorming and collaboration sessions, capturing the essence of teamwork and innovation.",
     image: gallery3,
   },
   {
