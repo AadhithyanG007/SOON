@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ================================================================== -->
+    <!-- SECURITY HARDENING META TAGS (OWASP Best Practices)                -->
+    <!-- These provide baseline security for static sites. For production,  -->
+    <!-- also configure security headers at your hosting/CDN layer.         -->
+    <!-- ================================================================== -->
+
+    <!-- SECURITY: Prevents clickjacking by disallowing iframe embedding -->
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+
+    <!-- SECURITY: Prevents MIME-sniffing attacks -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+
+    <!-- SECURITY: Controls referrer information sent with requests -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!-- NOTE: Content-Security-Policy is configured in public/_headers for production -->
+    <!-- CSP via meta tag is not used here because Vite dev server requires dynamic scripts -->
+    <!-- For production builds, the _headers file provides proper CSP protection -->
+
+    <!-- ================================================================== -->
+    <!-- END SECURITY META TAGS                                             -->
+    <!-- ================================================================== -->
+
+    <title>Something Out of Nothing | From Nothing to Impact</title>
+    <meta
+      name="description"
+      content="Something Out of Nothing — a team-designed and team-developed website. From Nothing to Impact."
+    />
+    <meta name="author" content="Something Out of Nothing Team" />
+    <!-- Ownership: this site is fully created by our team (design + development). -->
+
+    <meta
+      property="og:title"
+      content="Something Out of Nothing | From Nothing to Impact"
+    />
+    <meta
+      property="og:description"
+      content="Designed and developed by our team — energy, unity, leadership."
+    />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Something Out of Nothing" />
+    <meta
+      name="twitter:description"
+      content="From Nothing to Impact — Energy, Unity, Leadership"
+    />
+    <link rel="icon" type="image/jpeg" href="/src/assets/logo.jpg" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

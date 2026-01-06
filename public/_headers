@@ -1,0 +1,131 @@
+# ============================================================================
+
+# SECURITY HEADERS FOR PRODUCTION DEPLOYMENT (OWASP Best Practices)
+
+# ============================================================================
+
+# This file configures security headers for static site hosting platforms
+
+# that support the \_headers file format (Netlify, Cloudflare Pages, etc.)
+
+#
+
+# For other platforms, configure these headers in your hosting dashboard:
+
+# - Vercel: vercel.json
+
+# - AWS CloudFront: Lambda@Edge or CloudFront Functions
+
+# - Azure Static Web Apps: staticwebapp.config.json
+
+# - Nginx: server config
+
+# ============================================================================
+
+/\*
+
+# SECURITY: Prevents MIME-sniffing attacks
+
+# Browsers should trust the Content-Type header and not try to detect the type
+
+X-Content-Type-Options: nosniff
+
+# SECURITY: Prevents clickjacking attacks
+
+# Disallows embedding this site in iframes on other domains
+
+X-Frame-Options: DENY
+
+# SECURITY: Controls referrer information leakage
+
+# Only sends origin (not full URL) to cross-origin requests
+
+Referrer-Policy: strict-origin-when-cross-origin
+
+# SECURITY: Restricts browser features for privacy/security
+
+# Disables access to sensitive device features
+
+Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
+
+# SECURITY: Prevents cross-origin window attacks
+
+Cross-Origin-Opener-Policy: same-origin
+
+# SECURITY: Prevents cross-origin resource sharing attacks
+
+Cross-Origin-Resource-Policy: same-origin
+
+# SECURITY: Content Security Policy
+
+# Restricts resource loading to trusted sources only
+
+# - default-src 'self': Only allow resources from same origin by default
+
+# - script-src 'self': Only allow scripts from same origin (no inline/eval)
+
+# - style-src: Allow styles from self, inline (Tailwind), and Google Fonts
+
+# - font-src: Allow fonts from self, Google Fonts, and data URIs
+
+# - img-src: Allow images from self, data URIs, and blobs
+
+# - connect-src 'self': Only allow fetch/XHR to same origin
+
+# - frame-ancestors 'none': Prevent embedding in iframes (clickjacking)
+
+# - base-uri 'self': Prevent base tag hijacking
+
+# - form-action 'self': Prevent form submissions to external URLs
+
+# - object-src 'none': Prevent Flash/plugins (legacy attack vector)
+
+Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+
+# ============================================================================
+
+# RATE LIMITING NOTES
+
+# ============================================================================
+
+# Since this is a static frontend with no backend API, rate limiting must be
+
+# configured at your hosting/CDN layer:
+
+#
+
+# Cloudflare:
+
+# - Use Rate Limiting Rules in the Security section
+
+# - Example: 100 requests per minute per IP to protect against abuse
+
+#
+
+# Netlify:
+
+# - Use Netlify's built-in DDoS protection (automatic)
+
+# - For custom limits, use Netlify Functions with rate limiting middleware
+
+#
+
+# Vercel:
+
+# - Automatic DDoS protection included
+
+# - For API routes, use @vercel/edge rate limiting
+
+#
+
+# AWS CloudFront:
+
+# - Use AWS WAF with rate-based rules
+
+# - Configure request throttling in CloudFront
+
+#
+
+# See SECURITY.md for detailed configuration examples.
+
+# ============================================================================

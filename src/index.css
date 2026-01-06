@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Cosmic color palette */
+    --background: 222 47% 6%;
+    --foreground: 220 20% 95%;
+
+    --card: 222 47% 10%;
+    --card-foreground: 220 20% 95%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 220 20% 95%;
+
+    --primary: 45 90% 55%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 220 60% 20%;
+    --secondary-foreground: 220 20% 95%;
+
+    --muted: 220 30% 15%;
+    --muted-foreground: 220 15% 60%;
+
+    --accent: 200 70% 50%;
+    --accent-foreground: 220 20% 95%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 40% 20%;
+    --input: 220 40% 15%;
+    --ring: 45 90% 55%;
+
+    --radius: 0.75rem;
+
+    /* Custom cosmic tokens */
+    --cosmic-navy: 222 47% 11%;
+    --cosmic-deep: 222 55% 8%;
+    --cosmic-blue: 220 70% 25%;
+    --cosmic-glow: 200 80% 60%;
+    --golden: 45 90% 55%;
+    --golden-light: 45 85% 70%;
+    --golden-glow: 45 100% 50%;
+    --silver: 220 15% 70%;
+    --silver-light: 220 10% 85%;
+    --star-white: 220 20% 98%;
+
+    /* Gradients */
+    --gradient-cosmic: linear-gradient(135deg, hsl(222 55% 8%) 0%, hsl(220 70% 15%) 50%, hsl(222 47% 11%) 100%);
+    --gradient-golden: linear-gradient(135deg, hsl(45 90% 55%) 0%, hsl(40 95% 65%) 50%, hsl(45 85% 50%) 100%);
+    --gradient-silver: linear-gradient(135deg, hsl(220 10% 85%) 0%, hsl(220 15% 70%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsla(220 40% 30% / 0.3) 0%, hsla(220 40% 20% / 0.2) 100%);
+    --gradient-card: linear-gradient(180deg, hsla(220 50% 20% / 0.5) 0%, hsla(222 47% 11% / 0.8) 100%);
+
+    /* Shadows & Glows */
+    --glow-golden: 0 0 40px hsla(45 100% 50% / 0.4);
+    --glow-cosmic: 0 0 60px hsla(200 80% 60% / 0.3);
+    --glow-silver: 0 0 30px hsla(220 15% 70% / 0.3);
+    --shadow-card: 0 20px 60px -15px hsla(222 55% 5% / 0.8);
+    --shadow-elevated: 0 30px 80px -20px hsla(222 55% 5% / 0.9);
+
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 220 20% 95%;
+    --sidebar-primary: 45 90% 55%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 220 60% 20%;
+    --sidebar-accent-foreground: 220 20% 95%;
+    --sidebar-border: 220 40% 20%;
+    --sidebar-ring: 45 90% 55%;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 220 20% 95%;
+    --card: 222 47% 10%;
+    --card-foreground: 220 20% 95%;
+    --popover: 222 47% 8%;
+    --popover-foreground: 220 20% 95%;
+    --primary: 45 90% 55%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 220 60% 20%;
+    --secondary-foreground: 220 20% 95%;
+    --muted: 220 30% 15%;
+    --muted-foreground: 220 15% 60%;
+    --accent: 200 70% 50%;
+    --accent-foreground: 220 20% 95%;
+    --border: 220 40% 20%;
+    --input: 220 40% 15%;
+    --ring: 45 90% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background: var(--gradient-cosmic);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glassmorphism panels */
+  .glass-panel {
+    @apply backdrop-blur-xl border border-border/30;
+    background: var(--gradient-glass);
+  }
+
+  .glass-card {
+    @apply backdrop-blur-lg rounded-2xl border border-border/20;
+    background: linear-gradient(135deg, hsla(220, 40%, 25%, 0.25) 0%, hsla(220, 40%, 15%, 0.15) 100%);
+  }
+
+  /* Golden glow effects */
+  .glow-golden {
+    box-shadow: var(--glow-golden);
+  }
+
+  .glow-cosmic {
+    box-shadow: var(--glow-cosmic);
+  }
+
+  .text-glow-golden {
+    text-shadow: 0 0 20px hsla(45, 100%, 50%, 0.5), 0 0 40px hsla(45, 100%, 50%, 0.3);
+  }
+
+  .text-glow-cosmic {
+    text-shadow: 0 0 20px hsla(200, 80%, 60%, 0.4);
+  }
+
+  /* 3D Card transforms */
+  .card-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .card-3d:hover {
+    transform: translateZ(20px) rotateX(2deg) rotateY(-2deg);
+  }
+
+  /* Animated borders */
+  .border-glow {
+    position: relative;
+  }
+
+  .border-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, hsl(45 90% 55%), hsl(200 70% 50%), hsl(45 90% 55%));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .border-glow:hover::before {
+    opacity: 1;
+  }
+
+  /* Counter animation */
+  .counter-ring {
+    background: conic-gradient(
+      hsl(var(--primary)) var(--progress, 0%),
+      hsl(var(--muted)) var(--progress, 0%)
+    );
+  }
+
+  /* Star particles */
+  .star {
+    @apply absolute rounded-full bg-star-white;
+    animation: twinkle var(--duration, 3s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* Floating animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Pulse glow */
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 20px hsla(45, 100%, 50%, 0.3); }
+    50% { box-shadow: 0 0 40px hsla(45, 100%, 50%, 0.6), 0 0 60px hsla(45, 100%, 50%, 0.3); }
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .font-body {
+    font-family: 'Outfit', sans-serif;
+  }
+
+  /* Gradient text */
+  .text-gradient-golden {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-golden);
+  }
+
+  .text-gradient-silver {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-silver);
+  }
+
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Perspective utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
