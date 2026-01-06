@@ -20,7 +20,7 @@ interface DayTask {
 
 const stats: StatItem[] = [
   { id: 1, label: "Total Points", value: 7181, suffix: "", icon: <Trophy className="w-6 h-6" />, color: "text-golden" },
-  { id: 2, label: "Tasks Completed", value: 3, suffix: "", icon: <CheckCircle className="w-6 h-6" />, color: "text-accent" },
+  { id: 2, label: "Tasks Completed", value: 4, suffix: "", icon: <CheckCircle className="w-6 h-6" />, color: "text-accent" },
 ];
 
 const dayTasks: DayTask[] = [
@@ -32,7 +32,8 @@ const dayTasks: DayTask[] = [
       "Brainstorming session for ideas",
       "Understanding the task and outlining our plan to create the gym advertisement.",
       "Completed the introspection and icebreaker activities to understand myself better and connect with the team.",
-      "Learned how to create a professional resume and identified mistakes in our body language."
+      "Learned how to create a professional resume and identified mistakes in our body language.",
+      "Prepared a PPT introducing our team name, logo, and member roles."
     ],
     status: "completed",
   },
