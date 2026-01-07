@@ -40,7 +40,7 @@ const galleryItems: GalleryItem[] = [
   {
     id: 4,
     title: "Achievement Trophy",
-    category: "Artifacts",
+    category: "Handcraft",
     description: "Custom golden trophy celebrating our team's milestones and collective accomplishments throughout the journey.",
     image: gallery4,
   },
