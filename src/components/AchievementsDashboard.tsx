@@ -19,8 +19,8 @@ interface DayTask {
 }
 
 const stats: StatItem[] = [
-  { id: 1, label: "Total Points", value: 11101, suffix: "", icon: <Trophy className="w-6 h-6" />, color: "text-golden" },
-  { id: 2, label: "Tasks Completed", value: 4, suffix: "", icon: <CheckCircle className="w-6 h-6" />, color: "text-accent" },
+  { id: 1, label: "Total Points", value: 28341, suffix: "", icon: <Trophy className="w-6 h-6" />, color: "text-golden" },
+  { id: 2, label: "Tasks Completed", value: 14, suffix: "", icon: <CheckCircle className="w-6 h-6" />, color: "text-accent" },
 ];
 
 const dayTasks: DayTask[] = [
@@ -39,9 +39,16 @@ const dayTasks: DayTask[] = [
   },
   {
     day: "Day 2",
-    date: "In Progress",
-    tasks: [],
-    status: "inProgress",
+    date: "Second Day",
+    tasks: ["Learned the importance of preparation and planning by observing how teams earned points and executed their ideas effectively.",
+            "Submitted the icebreaker, introspection form, and diary, and understood the need for clear communication and verifying tasks within the team.",
+            "Presented our updated PPT (logo, name, tagline, roles, and ideas implemented) and improved teamwork, confidence, and presentation skills.",
+            "Participated in activities like the Bread-Butter-Jam task and reflections, which strengthened focus, presence of mind, and learning from mistakes.",
+            "Updated my resume to make it more professional and industry-ready.",
+            "Learned key interview concepts — answering “Tell me about yourself,” strengths and weaknesses, salary questions, stress interviews, and “Where do you see yourself in 5 years?” confidently."
+
+    ],
+    status: "completed",
   },
   {
     day: "Day 3",
