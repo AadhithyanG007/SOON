@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Trophy, CheckCircle, Calendar, Clock } from 'lucide-react';
+import { Trophy, CheckCircle, Calendar, Clock, Crown, Star } from 'lucide-react';
 
 interface StatItem {
   id: number;
@@ -19,8 +19,8 @@ interface DayTask {
 }
 
 const stats: StatItem[] = [
-  { id: 1, label: "Total Points", value: 28341, suffix: "", icon: <Trophy className="w-6 h-6" />, color: "text-golden" },
-  { id: 2, label: "Tasks Completed", value: 14, suffix: "", icon: <CheckCircle className="w-6 h-6" />, color: "text-accent" },
+  { id: 1, label: "Total Points", value: 52500, suffix: "", icon: <Trophy className="w-6 h-6" />, color: "text-golden" },
+  { id: 2, label: "Tasks Completed", value: 16, suffix: "", icon: <CheckCircle className="w-6 h-6" />, color: "text-accent" },
 ];
 
 const dayTasks: DayTask[] = [
@@ -52,9 +52,13 @@ const dayTasks: DayTask[] = [
   },
   {
     day: "Day 3",
-    date: "In Progress",
-    tasks: [],
-    status: "inProgress",
+    date: "Third Day",
+    tasks: [
+      "Participated in a group discussion on 'How to develop a positive attitude', sharing insights and learning from peers.",
+      "Attended a quiz session based on topics covered by the mentor, reinforcing our knowledge and understanding.",
+      "Celebrated our team's victory in the challenges, boosting morale and team spirit."
+    ],
+    status: "completed",
   }
 ];
 
@@ -115,6 +119,49 @@ export const AchievementsDashboard = () => {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Every number tells a story of dedication, growth, and collective triumph.
           </p>
+        </motion.div>
+
+        {/* Victory Section */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <div className="relative glass-card rounded-3xl p-8 md:p-12 overflow-hidden border border-golden/30 text-center">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-golden to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-br from-golden/10 to-transparent" />
+            
+            <motion.div 
+              initial={{ y: -20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="relative z-10 flex flex-col items-center"
+            >
+              <div className="w-20 h-20 bg-gradient-to-br from-golden to-golden-light rounded-full flex items-center justify-center mb-6 shadow-lg shadow-golden/20">
+                <Crown className="w-10 h-10 text-cosmic-deep" />
+              </div>
+              
+              <h3 className="font-display text-2xl md:text-4xl font-bold text-gradient-golden mb-4">
+                Grand Victory!
+              </h3>
+              
+              <div className="flex gap-2 mb-6">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star key={i} className="w-5 h-5 text-golden fill-golden animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
+                ))}
+              </div>
+              
+              <p className="text-xl text-silver max-w-2xl font-medium leading-relaxed">
+                "Our team demonstrated exceptional collaboration and knowledge, securing the top position in the daily challenges! A testament to our dedication and positive attitude."
+              </p>
+            </motion.div>
+
+            {/* Decorative particles */}
+            <div className="absolute top-10 left-10 w-2 h-2 bg-golden rounded-full animate-ping" />
+            <div className="absolute bottom-10 right-10 w-3 h-3 bg-accent rounded-full animate-pulse" />
+          </div>
         </motion.div>
 
         {/* Stats grid */}
