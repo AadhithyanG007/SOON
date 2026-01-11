@@ -45,7 +45,7 @@ const dayTasks: DayTask[] = [
             "Presented our updated PPT (logo, name, tagline, roles, and ideas implemented) and improved teamwork, confidence, and presentation skills.",
             "Participated in activities like the Bread-Butter-Jam task and reflections, which strengthened focus, presence of mind, and learning from mistakes.",
             "Updated my resume to make it more professional and industry-ready.",
-            "Learned key interview concepts — answering “Tell me about yourself,” strengths and weaknesses, salary questions, stress interviews, and “Where do you see yourself in 5 years?” confidently."
+            "Learned key interview concepts :- answering “Tell me about yourself,” strengths and weaknesses, salary questions, stress interviews, and “Where do you see yourself in 5 years?” confidently."
 
     ],
     status: "completed",

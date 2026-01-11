@@ -17,7 +17,7 @@ const reflections: Reflection[] = [
   },
   {
     id: 2,
-    quote: "Creativity isn't about having the best ideas — it's about making each other's ideas better.",
+    quote: "Creativity isn't about having the best ideas :- it's about making each other's ideas better.",
     author: "Karthik S.",
     role: "Vise Captain",
   },
