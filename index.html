@@ -19,6 +19,20 @@
     <!-- SECURITY: Controls referrer information sent with requests -->
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
+    <!-- SECURITY: Disable browser features that could be exploited -->
+    <meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()" />
+
+    <!-- SECURITY: Prevent caching of sensitive data -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- SECURITY: Disable automatic phone number detection (prevents phishing) -->
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- SECURITY: Disable Microsoft Smart Screen auto-detection -->
+    <meta name="msapplication-tap-highlight" content="no" />
+
     <!-- NOTE: Content-Security-Policy is configured in public/_headers for production -->
     <!-- CSP via meta tag is not used here because Vite dev server requires dynamic scripts -->
     <!-- For production builds, the _headers file provides proper CSP protection -->

@@ -1,28 +1,22 @@
 # ============================================================================
 
-# SECURITY HEADERS FOR PRODUCTION DEPLOYMENT (OWASP Best Practices)
+# SECURITY HEADERS FOR CLOUDFLARE PAGES DEPLOYMENT (OWASP Best Practices)
 
 # ============================================================================
 
-# This file configures security headers for static site hosting platforms
+# This file configures security headers optimized for Cloudflare Pages.
 
-# that support the \_headers file format (Netlify, Cloudflare Pages, etc.)
-
-#
-
-# For other platforms, configure these headers in your hosting dashboard:
-
-# - Vercel: vercel.json
-
-# - AWS CloudFront: Lambda@Edge or CloudFront Functions
-
-# - Azure Static Web Apps: staticwebapp.config.json
-
-# - Nginx: server config
+# These headers provide defense-in-depth against common web attacks.
 
 # ============================================================================
 
 /\*
+
+# ==========================================================================
+
+# CORE SECURITY HEADERS
+
+# ==========================================================================
 
 # SECURITY: Prevents MIME-sniffing attacks
 
@@ -46,7 +40,7 @@ Referrer-Policy: strict-origin-when-cross-origin
 
 # Disables access to sensitive device features
 
-Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
+Permissions-Policy: accelerometer=(), autoplay=(), camera=(), cross-origin-isolated=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), xr-spatial-tracking=()
 
 # SECURITY: Prevents cross-origin window attacks
 
@@ -56,76 +50,169 @@ Cross-Origin-Opener-Policy: same-origin
 
 Cross-Origin-Resource-Policy: same-origin
 
-# SECURITY: Content Security Policy
+# SECURITY: Enables cross-origin isolation for enhanced security
 
-# Restricts resource loading to trusted sources only
+Cross-Origin-Embedder-Policy: credentialless
 
-# - default-src 'self': Only allow resources from same origin by default
+# SECURITY: Forces HTTPS connections (Cloudflare handles SSL, but this adds extra layer)
 
-# - script-src 'self': Only allow scripts from same origin (no inline/eval)
+# max-age=31536000 = 1 year, includeSubDomains for all subdomains, preload for HSTS preload list
 
-# - style-src: Allow styles from self, inline (Tailwind), and Google Fonts
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
-# - font-src: Allow fonts from self, Google Fonts, and data URIs
+# SECURITY: Legacy XSS protection (modern browsers use CSP, but this helps older browsers)
 
-# - img-src: Allow images from self, data URIs, and blobs
+X-XSS-Protection: 1; mode=block
 
-# - connect-src 'self': Only allow fetch/XHR to same origin
+# SECURITY: Prevents DNS prefetching to avoid information leakage
 
-# - frame-ancestors 'none': Prevent embedding in iframes (clickjacking)
+X-DNS-Prefetch-Control: off
 
-# - base-uri 'self': Prevent base tag hijacking
+# SECURITY: Disables client-side caching for sensitive pages (adjust as needed for static assets)
 
-# - form-action 'self': Prevent form submissions to external URLs
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
+Pragma: no-cache
 
-# - object-src 'none': Prevent Flash/plugins (legacy attack vector)
+# SECURITY: Content Security Policy (CSP)
 
-Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+# Comprehensive policy restricting resource loading to trusted sources
 
-# ============================================================================
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://vitals.vercel-insights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests; block-all-mixed-content
 
-# RATE LIMITING NOTES
+# SECURITY: Expect-CT header for Certificate Transparency monitoring
 
-# ============================================================================
+# Helps detect misissued certificates
 
-# Since this is a static frontend with no backend API, rate limiting must be
+Expect-CT: max-age=86400, enforce
 
-# configured at your hosting/CDN layer:
+# SECURITY: Prevent Adobe cross-domain policy loading
+
+X-Permitted-Cross-Domain-Policies: none
+
+# SECURITY: Prevent download/execution of potentially dangerous content
+
+X-Download-Options: noopen
+
+# ==========================================================================
+
+# STATIC ASSETS - Enable caching for performance while maintaining security
+
+# ==========================================================================
+
+/\*.js
+Cache-Control: public, max-age=31536000, immutable
+X-Content-Type-Options: nosniff
+
+/\*.css
+Cache-Control: public, max-age=31536000, immutable
+X-Content-Type-Options: nosniff
+
+/_.woff2
+Cache-Control: public, max-age=31536000, immutable
+Access-Control-Allow-Origin: _
+
+/_.woff
+Cache-Control: public, max-age=31536000, immutable
+Access-Control-Allow-Origin: _
+
+/_.ttf
+Cache-Control: public, max-age=31536000, immutable
+Access-Control-Allow-Origin: _
+
+/\*.png
+Cache-Control: public, max-age=31536000, immutable
+
+/\*.jpg
+Cache-Control: public, max-age=31536000, immutable
+
+/\*.jpeg
+Cache-Control: public, max-age=31536000, immutable
+
+/\*.gif
+Cache-Control: public, max-age=31536000, immutable
+
+/\*.svg
+Cache-Control: public, max-age=31536000, immutable
+Content-Type: image/svg+xml
+
+/\*.webp
+Cache-Control: public, max-age=31536000, immutable
+
+/\*.ico
+Cache-Control: public, max-age=31536000, immutable
+
+# ==========================================================================
+
+# HTML PAGES - No caching to ensure latest security updates
+
+# ==========================================================================
+
+/\*.html
+Cache-Control: no-cache, no-store, must-revalidate
+Pragma: no-cache
+Expires: 0
+
+/index.html
+Cache-Control: no-cache, no-store, must-revalidate
+Pragma: no-cache
+Expires: 0
+
+# ==========================================================================
+
+# CLOUDFLARE PAGES SPECIFIC NOTES
+
+# ==========================================================================
+
+# Additional security configurations in Cloudflare Dashboard:
 
 #
 
-# Cloudflare:
+# 1. SSL/TLS Settings:
 
-# - Use Rate Limiting Rules in the Security section
+# - Set SSL mode to "Full (Strict)"
 
-# - Example: 100 requests per minute per IP to protect against abuse
+# - Enable "Always Use HTTPS"
 
-#
+# - Enable "Automatic HTTPS Rewrites"
 
-# Netlify:
-
-# - Use Netlify's built-in DDoS protection (automatic)
-
-# - For custom limits, use Netlify Functions with rate limiting middleware
+# - Minimum TLS Version: TLS 1.2
 
 #
 
-# Vercel:
+# 2. Security Settings:
 
-# - Automatic DDoS protection included
+# - Enable "Browser Integrity Check"
 
-# - For API routes, use @vercel/edge rate limiting
+# - Enable "Hotlink Protection" (if needed)
 
-#
+# - Configure "Security Level" to Medium or High
 
-# AWS CloudFront:
-
-# - Use AWS WAF with rate-based rules
-
-# - Configure request throttling in CloudFront
+# - Enable "Bot Fight Mode"
 
 #
 
-# See SECURITY.md for detailed configuration examples.
+# 3. Firewall Rules:
 
-# ============================================================================
+# - Block known bad bots
+
+# - Rate limit aggressive requests
+
+# - Challenge suspicious IPs
+
+#
+
+# 4. Page Rules (if needed):
+
+# - Force HTTPS redirect
+
+# - Security level per path
+
+#
+
+# 5. DDoS Protection:
+
+# - Cloudflare provides automatic DDoS protection
+
+# - Consider enabling "Under Attack Mode" if targeted
+
+# ==========================================================================

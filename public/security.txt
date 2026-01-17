@@ -1,0 +1,16 @@
+Contact: mailto:security@yourdomain.com
+Expires: 2027-01-17T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://yourdomain.com/.well-known/security.txt
+
+# ==========================================================================
+# SECURITY.TXT - Security Contact Information
+# ==========================================================================
+# This file follows the security.txt standard (RFC 9116)
+# https://securitytxt.org/
+#
+# If you discover a security vulnerability in this website, please report
+# it responsibly using the contact information above.
+#
+# We appreciate security researchers who help us keep our site safe!
+# ==========================================================================

@@ -1,0 +1,39 @@
+# ==========================================================================
+# CLOUDFLARE PAGES REDIRECTS & SECURITY RULES
+# ==========================================================================
+
+# Force HTTPS (Cloudflare handles this, but this is a fallback)
+http://* https://:splat 301!
+
+# Redirect www to non-www (adjust based on your preference)
+# https://www.yourdomain.com/* https://yourdomain.com/:splat 301
+
+# ==========================================================================
+# BLOCK SENSITIVE FILE ACCESS
+# ==========================================================================
+
+# Block access to common sensitive files/paths
+/.env              /404.html 404
+/.env.local        /404.html 404
+/.env.production   /404.html 404
+/.git/*            /404.html 404
+/.gitignore        /404.html 404
+/.htaccess         /404.html 404
+/.htpasswd         /404.html 404
+/wp-admin          /404.html 404
+/wp-admin/*        /404.html 404
+/wp-login.php      /404.html 404
+/wp-config.php     /404.html 404
+/xmlrpc.php        /404.html 404
+/phpmyadmin        /404.html 404
+/phpmyadmin/*      /404.html 404
+/admin             /404.html 404
+/administrator     /404.html 404
+/.well-known/security.txt /security.txt 200
+
+# ==========================================================================
+# SPA ROUTING - Serve index.html for all routes (React Router support)
+# ==========================================================================
+
+# Handle client-side routing - serve index.html for unknown routes
+/* /index.html 200
