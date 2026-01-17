@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap");
 
 @layer base {
   :root {
@@ -50,11 +50,33 @@
     --star-white: 220 20% 98%;
 
     /* Gradients */
-    --gradient-cosmic: linear-gradient(135deg, hsl(222 55% 8%) 0%, hsl(220 70% 15%) 50%, hsl(222 47% 11%) 100%);
-    --gradient-golden: linear-gradient(135deg, hsl(45 90% 55%) 0%, hsl(40 95% 65%) 50%, hsl(45 85% 50%) 100%);
-    --gradient-silver: linear-gradient(135deg, hsl(220 10% 85%) 0%, hsl(220 15% 70%) 100%);
-    --gradient-glass: linear-gradient(135deg, hsla(220 40% 30% / 0.3) 0%, hsla(220 40% 20% / 0.2) 100%);
-    --gradient-card: linear-gradient(180deg, hsla(220 50% 20% / 0.5) 0%, hsla(222 47% 11% / 0.8) 100%);
+    --gradient-cosmic: linear-gradient(
+      135deg,
+      hsl(222 55% 8%) 0%,
+      hsl(220 70% 15%) 50%,
+      hsl(222 47% 11%) 100%
+    );
+    --gradient-golden: linear-gradient(
+      135deg,
+      hsl(45 90% 55%) 0%,
+      hsl(40 95% 65%) 50%,
+      hsl(45 85% 50%) 100%
+    );
+    --gradient-silver: linear-gradient(
+      135deg,
+      hsl(220 10% 85%) 0%,
+      hsl(220 15% 70%) 100%
+    );
+    --gradient-glass: linear-gradient(
+      135deg,
+      hsla(220 40% 30% / 0.3) 0%,
+      hsla(220 40% 20% / 0.2) 100%
+    );
+    --gradient-card: linear-gradient(
+      180deg,
+      hsla(220 50% 20% / 0.5) 0%,
+      hsla(222 47% 11% / 0.8) 100%
+    );
 
     /* Shadows & Glows */
     --glow-golden: 0 0 40px hsla(45 100% 50% / 0.4);
@@ -118,7 +140,11 @@
 
   .glass-card {
     @apply backdrop-blur-lg rounded-2xl border border-border/20;
-    background: linear-gradient(135deg, hsla(220, 40%, 25%, 0.25) 0%, hsla(220, 40%, 15%, 0.15) 100%);
+    background: linear-gradient(
+      135deg,
+      hsla(220, 40%, 25%, 0.25) 0%,
+      hsla(220, 40%, 15%, 0.15) 100%
+    );
   }
 
   /* Golden glow effects */
@@ -131,7 +157,9 @@
   }
 
   .text-glow-golden {
-    text-shadow: 0 0 20px hsla(45, 100%, 50%, 0.5), 0 0 40px hsla(45, 100%, 50%, 0.3);
+    text-shadow:
+      0 0 20px hsla(45, 100%, 50%, 0.5),
+      0 0 40px hsla(45, 100%, 50%, 0.3);
   }
 
   .text-glow-cosmic {
@@ -155,14 +183,23 @@
   }
 
   .border-glow::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: -2px;
     border-radius: inherit;
     padding: 2px;
-    background: linear-gradient(135deg, hsl(45 90% 55%), hsl(200 70% 50%), hsl(45 90% 55%));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    background: linear-gradient(
+      135deg,
+      hsl(45 90% 55%),
+      hsl(200 70% 50%),
+      hsl(45 90% 55%)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
@@ -189,8 +226,15 @@
   }
 
   @keyframes twinkle {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.2); }
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
   }
 
   /* Floating animation */
@@ -199,8 +243,13 @@
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
   }
 
   /* Pulse glow */
@@ -209,18 +258,58 @@
   }
 
   @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 20px hsla(45, 100%, 50%, 0.3); }
-    50% { box-shadow: 0 0 40px hsla(45, 100%, 50%, 0.6), 0 0 60px hsla(45, 100%, 50%, 0.3); }
+    0%,
+    100% {
+      box-shadow: 0 0 20px hsla(45, 100%, 50%, 0.3);
+    }
+    50% {
+      box-shadow:
+        0 0 40px hsla(45, 100%, 50%, 0.6),
+        0 0 60px hsla(45, 100%, 50%, 0.3);
+    }
+  }
+
+  /* Team carousel infinite scroll - responsive */
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Slower animation on larger screens for better viewing */
+  @media (min-width: 640px) {
+    .animate-scroll {
+      animation-duration: 25s;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .animate-scroll {
+      animation-duration: 30s;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .animate-scroll {
+      animation-duration: 35s;
+    }
   }
 }
 
 @layer utilities {
   .font-display {
-    font-family: 'Orbitron', sans-serif;
+    font-family: "Orbitron", sans-serif;
   }
 
   .font-body {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
   }
 
   /* Gradient text */

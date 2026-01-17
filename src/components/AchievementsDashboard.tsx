@@ -1,6 +1,13 @@
-import { useEffect, useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Trophy, CheckCircle, Calendar, Clock, Crown, Star } from 'lucide-react';
+import { useEffect, useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import {
+  Trophy,
+  CheckCircle,
+  Calendar,
+  Clock,
+  Crown,
+  Star,
+} from "lucide-react";
 
 interface StatItem {
   id: number;
@@ -19,8 +26,22 @@ interface DayTask {
 }
 
 const stats: StatItem[] = [
-  { id: 1, label: "Total Points", value: 52500, suffix: "", icon: <Trophy className="w-6 h-6" />, color: "text-golden" },
-  { id: 2, label: "Tasks Completed", value: 16, suffix: "", icon: <CheckCircle className="w-6 h-6" />, color: "text-accent" },
+  {
+    id: 1,
+    label: "Total Points",
+    value: 52500,
+    suffix: "",
+    icon: <Trophy className="w-6 h-6" />,
+    color: "text-golden",
+  },
+  {
+    id: 2,
+    label: "Tasks Completed",
+    value: 16,
+    suffix: "",
+    icon: <CheckCircle className="w-6 h-6" />,
+    color: "text-accent",
+  },
 ];
 
 const dayTasks: DayTask[] = [
@@ -33,20 +54,20 @@ const dayTasks: DayTask[] = [
       "Understanding the task and outlining our plan to create the gym advertisement.",
       "Completed the introspection and icebreaker activities to understand myself better and connect with the team.",
       "Learned how to create a professional resume and identified mistakes in our body language.",
-      "Prepared a PPT introducing our team name, logo, and member roles."
+      "Prepared a PPT introducing our team name, logo, and member roles.",
     ],
     status: "completed",
   },
   {
     day: "Day 2",
     date: "Second Day",
-    tasks: ["Learned the importance of preparation and planning by observing how teams earned points and executed their ideas effectively.",
-            "Submitted the icebreaker, introspection form, and diary, and understood the need for clear communication and verifying tasks within the team.",
-            "Presented our updated PPT (logo, name, tagline, roles, and ideas implemented) and improved teamwork, confidence, and presentation skills.",
-            "Participated in activities like the Bread-Butter-Jam task and reflections, which strengthened focus, presence of mind, and learning from mistakes.",
-            "Updated my resume to make it more professional and industry-ready.",
-            "Learned key interview concepts :- answering “Tell me about yourself,” strengths and weaknesses, salary questions, stress interviews, and “Where do you see yourself in 5 years?” confidently."
-
+    tasks: [
+      "Learned the importance of preparation and planning by observing how teams earned points and executed their ideas effectively.",
+      "Submitted the icebreaker, introspection form, and diary, and understood the need for clear communication and verifying tasks within the team.",
+      "Presented our updated PPT (logo, name, tagline, roles, and ideas implemented) and improved teamwork, confidence, and presentation skills.",
+      "Participated in activities like the Bread-Butter-Jam task and reflections, which strengthened focus, presence of mind, and learning from mistakes.",
+      "Updated my resume to make it more professional and industry-ready.",
+      "Learned key interview concepts :- answering “Tell me about yourself,” strengths and weaknesses, salary questions, stress interviews, and “Where do you see yourself in 5 years?” confidently.",
     ],
     status: "completed",
   },
@@ -56,22 +77,30 @@ const dayTasks: DayTask[] = [
     tasks: [
       "Participated in a group discussion on 'How to develop a positive attitude', sharing insights and learning from peers.",
       "Attended a quiz session based on topics covered by the mentor, reinforcing our knowledge and understanding.",
-      "Celebrated our team's victory in the challenges, boosting morale and team spirit."
+      "Celebrated our team's victory in the challenges, boosting morale and team spirit.",
     ],
     status: "completed",
-  }
+  },
 ];
 
-const CountUpNumber = ({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) => {
+const CountUpNumber = ({
+  value,
+  suffix,
+  inView,
+}: {
+  value: number;
+  suffix: string;
+  inView: boolean;
+}) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
-    
+
     let start = 0;
     const duration = 2000;
     const increment = value / (duration / 16);
-    
+
     const timer = setInterval(() => {
       start += increment;
       if (start >= value) {
@@ -86,8 +115,9 @@ const CountUpNumber = ({ value, suffix, inView }: { value: number; suffix: strin
   }, [value, inView]);
 
   return (
-    <span className="font-display text-4xl md:text-5xl font-bold">
-      {count.toLocaleString()}{suffix}
+    <span className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+      {count.toLocaleString()}
+      {suffix}
     </span>
   );
 };
@@ -97,27 +127,33 @@ export const AchievementsDashboard = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-24 relative overflow-hidden">
+    <section
+      ref={ref}
+      className="py-12 sm:py-16 md:py-24 relative overflow-hidden"
+    >
       {/* Background elements */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-golden/20 rounded-full blur-[100px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[100px]" />
+        <div className="absolute top-1/4 left-1/4 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 bg-golden/20 rounded-full blur-[60px] sm:blur-[80px] md:blur-[100px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 bg-accent/20 rounded-full blur-[60px] sm:blur-[80px] md:blur-[100px]" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
-          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient-golden">Achievements & Milestones</span>
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-4">
+            <span className="text-gradient-golden">
+              Achievements & Milestones
+            </span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Every number tells a story of dedication, growth, and collective triumph.
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2">
+            Every number tells a story of dedication, growth, and collective
+            triumph.
           </p>
         </motion.div>
 
@@ -127,45 +163,51 @@ export const AchievementsDashboard = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-16"
+          className="mb-8 sm:mb-12 md:mb-16"
         >
-          <div className="relative glass-card rounded-3xl p-8 md:p-12 overflow-hidden border border-golden/30 text-center">
+          <div className="relative glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 overflow-hidden border border-golden/30 text-center">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-golden to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-br from-golden/10 to-transparent" />
-            
-            <motion.div 
+
+            <motion.div
               initial={{ y: -20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
               className="relative z-10 flex flex-col items-center"
             >
-              <div className="w-20 h-20 bg-gradient-to-br from-golden to-golden-light rounded-full flex items-center justify-center mb-6 shadow-lg shadow-golden/20">
-                <Crown className="w-10 h-10 text-cosmic-deep" />
+              <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-golden to-golden-light rounded-full flex items-center justify-center mb-4 sm:mb-5 md:mb-6 shadow-lg shadow-golden/20">
+                <Crown className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-cosmic-deep" />
               </div>
-              
-              <h3 className="font-display text-2xl md:text-4xl font-bold text-gradient-golden mb-4">
+
+              <h3 className="font-display text-xl sm:text-2xl md:text-4xl font-bold text-gradient-golden mb-3 md:mb-4">
                 Grand Victory!
               </h3>
-              
-              <div className="flex gap-2 mb-6">
+
+              <div className="flex gap-1.5 sm:gap-2 mb-4 sm:mb-5 md:mb-6">
                 {[1, 2, 3, 4, 5].map((i) => (
-                  <Star key={i} className="w-5 h-5 text-golden fill-golden animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
+                  <Star
+                    key={i}
+                    className="w-4 h-4 sm:w-5 sm:h-5 text-golden fill-golden animate-pulse"
+                    style={{ animationDelay: `${i * 0.1}s` }}
+                  />
                 ))}
               </div>
-              
-              <p className="text-xl text-silver max-w-2xl font-medium leading-relaxed">
-                "Our team demonstrated exceptional collaboration and knowledge, securing the top position in the daily challenges! A testament to our dedication and positive attitude."
+
+              <p className="text-sm sm:text-base md:text-xl text-silver max-w-2xl font-medium leading-relaxed px-2">
+                "Our team demonstrated exceptional collaboration and knowledge,
+                securing the top position in the daily challenges! A testament
+                to our dedication and positive attitude."
               </p>
             </motion.div>
 
             {/* Decorative particles */}
-            <div className="absolute top-10 left-10 w-2 h-2 bg-golden rounded-full animate-ping" />
-            <div className="absolute bottom-10 right-10 w-3 h-3 bg-accent rounded-full animate-pulse" />
+            <div className="absolute top-6 left-6 sm:top-10 sm:left-10 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-golden rounded-full animate-ping" />
+            <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 w-2 h-2 sm:w-3 sm:h-3 bg-accent rounded-full animate-pulse" />
           </div>
         </motion.div>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 gap-4 md:gap-6 mb-16 max-w-2xl mx-auto">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-8 sm:mb-12 md:mb-16 max-w-2xl mx-auto">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.id}
@@ -175,25 +217,34 @@ export const AchievementsDashboard = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative group"
             >
-              <div className="glass-card p-6 md:p-8 rounded-2xl h-full border border-border/30 hover:border-golden/40 transition-all duration-300 hover:shadow-lg hover:shadow-golden/10">
+              <div className="glass-card p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl h-full border border-border/30 hover:border-golden/40 transition-all duration-300 hover:shadow-lg hover:shadow-golden/10">
                 {/* Icon */}
-                <div className={`inline-flex p-3 rounded-xl mb-4 glass-panel ${stat.color}`}>
-                  {stat.icon}
+                <div
+                  className={`inline-flex p-2 sm:p-3 rounded-lg sm:rounded-xl mb-3 sm:mb-4 glass-panel ${stat.color}`}
+                >
+                  <span className="[&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-5 sm:[&>svg]:h-5 md:[&>svg]:w-6 md:[&>svg]:h-6">
+                    {stat.icon}
+                  </span>
                 </div>
 
                 {/* Value */}
                 <div className={stat.color}>
-                  <CountUpNumber value={stat.value} suffix={stat.suffix} inView={isInView} />
+                  <CountUpNumber
+                    value={stat.value}
+                    suffix={stat.suffix}
+                    inView={isInView}
+                  />
                 </div>
 
                 {/* Label */}
-                <p className="text-silver text-sm md:text-base mt-2 font-medium">
+                <p className="text-silver text-xs sm:text-sm md:text-base mt-1 sm:mt-2 font-medium">
                   {stat.label}
                 </p>
 
                 {/* Glow effect on hover */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" 
-                  style={{ boxShadow: '0 0 40px hsla(45, 100%, 50%, 0.15)' }} 
+                <div
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  style={{ boxShadow: "0 0 40px hsla(45, 100%, 50%, 0.15)" }}
                 />
               </div>
             </motion.div>
@@ -206,16 +257,16 @@ export const AchievementsDashboard = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="glass-card rounded-3xl p-6 md:p-10 border border-border/30"
+          className="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-10 border border-border/30"
         >
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <Calendar className="w-6 h-6 text-golden" />
-            <h3 className="font-display text-xl md:text-2xl font-bold text-foreground text-center">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-5 sm:mb-6 md:mb-8">
+            <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-golden" />
+            <h3 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground text-center">
               Our 3-Day Journey
             </h3>
           </div>
-          
-          <div className="grid md:grid-cols-3 gap-6">
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
             {dayTasks.map((day, dayIndex) => (
               <motion.div
                 key={day.day}
@@ -226,50 +277,60 @@ export const AchievementsDashboard = () => {
                 className="relative"
               >
                 <div
-                  className={`glass-panel rounded-2xl p-6 h-full border border-border/20 transition-all duration-300 group ${
+                  className={`glass-panel rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 h-full border border-border/20 transition-all duration-300 group ${
                     day.status === "inProgress"
                       ? "opacity-80"
                       : "hover:border-golden/30"
                   }`}
                 >
                   {/* Day header */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 rounded-xl bg-gradient-to-br from-golden to-golden-light">
-                      <Clock className="w-4 h-4 text-cosmic-deep" />
+                  <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                    <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-gradient-to-br from-golden to-golden-light">
+                      <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cosmic-deep" />
                     </div>
                     <div>
-                      <h4 className="font-display text-lg font-bold text-golden">{day.day}</h4>
-                      <p className="text-xs text-silver">{day.date}</p>
+                      <h4 className="font-display text-base sm:text-lg font-bold text-golden">
+                        {day.day}
+                      </h4>
+                      <p className="text-[10px] sm:text-xs text-silver">
+                        {day.date}
+                      </p>
                     </div>
                   </div>
 
                   {/* Tasks list */}
                   {day.status === "inProgress" ? (
-                    <div className="flex items-center gap-2 rounded-xl border border-border/20 px-3 py-2 text-sm text-silver">
-                      <Clock className="w-4 h-4 text-golden" />
+                    <div className="flex items-center gap-2 rounded-lg sm:rounded-xl border border-border/20 px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm text-silver">
+                      <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-golden" />
                       <span>In Progress</span>
                     </div>
                   ) : (
-                    <ul className="space-y-3">
+                    <ul className="space-y-2 sm:space-y-3">
                       {day.tasks.map((task, taskIndex) => (
                         <motion.li
                           key={taskIndex}
                           initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
-                          transition={{ duration: 0.3, delay: 0.6 + dayIndex * 0.15 + taskIndex * 0.1 }}
-                          className="flex items-start gap-2"
+                          transition={{
+                            duration: 0.3,
+                            delay: 0.6 + dayIndex * 0.15 + taskIndex * 0.1,
+                          }}
+                          className="flex items-start gap-1.5 sm:gap-2"
                         >
-                          <CheckCircle className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-silver-light leading-relaxed">{task}</span>
+                          <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent mt-0.5 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm text-silver-light leading-relaxed">
+                            {task}
+                          </span>
                         </motion.li>
                       ))}
                     </ul>
                   )}
 
                   {/* Glow on hover */}
-                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                    style={{ boxShadow: '0 0 30px hsla(45, 100%, 50%, 0.1)' }}
+                  <div
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    style={{ boxShadow: "0 0 30px hsla(45, 100%, 50%, 0.1)" }}
                   />
                 </div>
 
